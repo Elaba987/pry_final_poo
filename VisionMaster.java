@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.io.*;
 
 public class VisionMaster {
 
@@ -48,7 +47,7 @@ public class VisionMaster {
 				case 2: menuClientes();     break;
 				case 3: menuAlmacen();      break;
 				case 4: mostrarCitas();     break;
-				case 5: System.out.println("Hasta luego. Ventas: " + OrdenCompra.getTotalVentas()); break;
+				case 5: System.out.println("BYE BYE B). Ventas: " + OrdenCompra.getTotalVentas()); break;
 				default: System.out.println("Opcion no valida."); break;
 			}
 		}
@@ -232,7 +231,7 @@ public class VisionMaster {
 
 		Cita cita;
 		if(opc == 1) {
-			System.out.print("Es gratuita? (s/n): ");
+			System.out.print("Es cita gratuita? (s/n): ");
 			boolean gratuita = sc.nextLine().equalsIgnoreCase("s");
 			cita = new CitaExamen(fecha, hora, cliente.getNombre(), gratuita);
 		} else {
@@ -248,7 +247,7 @@ public class VisionMaster {
 		System.out.println("\n--- PASO 4: Pago ---");
 		System.out.println("Subtotal: $" + orden.getSubtotal());
 		if(orden.isCuponAplicado()) {
-			System.out.println("CUPON APLICADO! Descuento: -$" + orden.getDescuento());
+			System.out.println("CUPON APLICADO Descuento: -$" + orden.getDescuento());
 		}
 		System.out.println("TOTAL: $" + orden.getTotal());
 	}
@@ -266,7 +265,7 @@ public class VisionMaster {
 		System.out.println("Total   : $" + orden.getTotal());
 
 		if(orden.isGanoNuevoCupon()) {
-			System.out.println("** Ganaste un cupon de $400 para tu proxima compra! **");
+			System.out.println(" Ganaste un cupon de $400 para tu proxima compra :)");
 		} else {
 			System.out.println("(Compra minima $4000 para ganar cupon de $400)");
 		}
