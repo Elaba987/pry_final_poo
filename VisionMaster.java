@@ -1,31 +1,38 @@
+// finalmente (GRACIAS A DIOS) el motor de todo. 
+
+// Para el diagrama: VisionMaster no tiene atributos de instancia como tal, solo dos estáticos que son sc (Scanner) y tienda (Tienda)
+
+// Los métodos principales son:
+//   main(), nuevaCompra(), seleccionarOCrearCliente(), elegirClienteDeLista(),
+//   crearCliente(), configurarProducto(), elegirArmazon(), elegirAccesorio(),
+//   agendarCita(), pago(), resumenYDescarga(),
+//   menuClientes(), verListaClientes(), editarCliente(), verCitasDeCliente(),
+//   eliminarCliente(), menuAlmacen(), verInventario(), agregarProducto(),
+//   editarProducto(), editarArmazon(), editarAccesorio(), eliminarProducto(),
+//   mostrarCitas(), leerEntero()
+
+// En el diagrama de clases basta con poner VisionMaster con una dependencia/uso hacia Tienda, OrdenCompra, Cliente, Cita, Producto, Armazon y Accesorio
+
+//Basiacmente este es el cerebro del proyecto, cualquier duda con Iker por favor
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 
-// Clase principal - flujo de menu basado en Main.java
-// Patron Main.java -> Scanner sc = new Scanner(System.in); while(opcion != 7) { switch(opcion) { } }
-// Patron Mascotas.java -> instanceof y cast (Tipo)objeto
-// Patron DiaFavorito2.java -> TipoGraduacion[] tipos = TipoGraduacion.values(); for(Dia d: Dia.values())
-// Patron MiConteo.java -> static variables compartidas
-// Patron BufferStream.java / EntradaTeclado.java -> lectura de Scanner / IO
 public class VisionMaster {
 
-	// Scanner estatico - patron Main.java -> Scanner sc = new Scanner(System.in);
 	static Scanner sc = new Scanner(System.in);
-	// Tienda estatica - patron de variable compartida como MiConteo.java
 	static Tienda tienda = new Tienda();
 
 	public static void main(String[] args) {
-		System.out.println("========================================");
-		System.out.println("  OPTICA " + Tienda.getNombre());
-		System.out.println("  Sistema de Gestion");
-		System.out.println("========================================");
+		System.out.println("======================================");
+		System.out.println("  OPTICA VISION MASTER  " );
+		System.out.println("======================================");
 
 		int opcion = 0;
 
-		// while - patron Main.java -> while(opcion != 7)
 		while(opcion != 5) {
 			System.out.println("\n--- MENU PRINCIPAL ---");
 			System.out.println("1. Nueva compra");
@@ -36,7 +43,6 @@ public class VisionMaster {
 			System.out.print("Opcion: ");
 			opcion = leerEntero();
 
-			// switch - patron Switch.java -> switch(i) { case 3: ... break; }
 			switch(opcion) {
 				case 1: nuevaCompra();      break;
 				case 2: menuClientes();     break;
@@ -48,10 +54,6 @@ public class VisionMaster {
 		}
 	}
 
-	// =====================================================================
-	// FLUJO NUEVA COMPRA
-	// =====================================================================
-
 	static void nuevaCompra() {
 		Cliente cliente = seleccionarOCrearCliente();
 		if(cliente == null) {
@@ -62,7 +64,6 @@ public class VisionMaster {
 		OrdenCompra orden = new OrdenCompra(cliente);
 		configurarProducto(orden);
 
-		// lista.isEmpty() - patron Colecciones.java
 		if(orden.getCarrito().isEmpty()) {
 			System.out.println("Sin productos. Compra cancelada.");
 			return;
@@ -81,7 +82,6 @@ public class VisionMaster {
 		System.out.print("Opcion: ");
 		int opc = leerEntero();
 
-		// if/else if - patron If.java
 		if(opc == 1) {
 			return elegirClienteDeLista();
 		} else if(opc == 2) {
@@ -92,13 +92,11 @@ public class VisionMaster {
 
 	static Cliente elegirClienteDeLista() {
 		List<Cliente> clientes = tienda.getClientes();
-		// lista.isEmpty() - patron Colecciones.java
 		if(clientes.isEmpty()) {
 			System.out.println("No hay clientes registrados.");
 			return null;
 		}
 		System.out.println("\n-- Clientes --");
-		// for con indice - patron Main.java -> for (int i = 0; i < lista.size(); i++)
 		for(int i = 0; i < clientes.size(); i++) {
 			System.out.println((i + 1) + ". " + clientes.get(i));
 		}
@@ -118,22 +116,16 @@ public class VisionMaster {
 		String telefono = sc.nextLine();
 		System.out.print("Correo: ");
 		String correo = sc.nextLine();
-		// new Cliente - patron Agencia.java -> Automovil auto1 = new Automovil("Audi R8");
 		Cliente c = new Cliente(nombre, telefono, correo);
 		tienda.registrarCliente(c);
 		System.out.println("Cliente registrado: " + c);
 		return c;
 	}
 
-	// =====================================================================
-	// PASO 2 - Configuracion del producto
-	// =====================================================================
-
 	static void configurarProducto(OrdenCompra orden) {
 		System.out.println("\n--- PASO 2: Seleccion de Productos ---");
 
 		int opc = 0;
-		// while con condicion - patron Main.java
 		while(opc != 3) {
 			System.out.println("\nCarrito: " + orden.getCarrito().size() + " producto(s) | Subtotal: $" + orden.getSubtotal());
 			System.out.println("1. Ver armazones");
@@ -151,7 +143,6 @@ public class VisionMaster {
 
 		System.out.println("\nCarrito final:");
 		int num = 1;
-		// for-each - patron Main.java -> for (Animal a : lista)
 		for(Producto p : orden.getCarrito()) {
 			System.out.println(num + ". " + p);
 			num++;
@@ -160,7 +151,6 @@ public class VisionMaster {
 	}
 
 	static void elegirArmazon(OrdenCompra orden) {
-		// Filtrar armazones - instanceof como en Mascotas.java -> if(animal instanceof Perro)
 		List<Producto> armazones = new ArrayList<>();
 		for(Producto p : tienda.getInventario()) {
 			if(p instanceof Armazon) {
@@ -170,7 +160,6 @@ public class VisionMaster {
 
 		System.out.println("\n-- Armazones --");
 		for(int i = 0; i < armazones.size(); i++) {
-			// Cast como en Mascotas.java -> Perro p = (Perro)animal;
 			System.out.println((i + 1) + ". " + ((Armazon) armazones.get(i)).toStringCompleto());
 		}
 		System.out.println("0. Volver al menu anterior");
@@ -180,13 +169,10 @@ public class VisionMaster {
 			return;
 		}
 
-		// Cast - patron Mascotas.java -> Gato g = (Gato) Mascotas.comprar();
 		Armazon base = (Armazon) armazones.get(idx);
 
-		// Elegir graduacion con enum - patron DiaFavorito2.java -> for(Dia d: Dia.values())
 		System.out.println("\n-- Tipo de lente para este armazon --");
 		TipoGraduacion[] tipos = TipoGraduacion.values();
-		// for con indice - patron For.java -> for(int i=0; i<amigos.length; i++)
 		for(int i = 0; i < tipos.length; i++) {
 			System.out.println((i + 1) + ". " + tipos[i].getNombre());
 		}
@@ -206,7 +192,6 @@ public class VisionMaster {
 
 	static void elegirAccesorio(OrdenCompra orden) {
 		List<Producto> accesorios = new ArrayList<>();
-		// instanceof - patron Mascotas.java
 		for(Producto p : tienda.getInventario()) {
 			if(p instanceof Accesorio) {
 				accesorios.add(p);
@@ -228,10 +213,6 @@ public class VisionMaster {
 		System.out.println("Agregado: " + accesorios.get(idx).getNombre());
 	}
 
-	// =====================================================================
-	// PASO 3 - Agendar cita
-	// =====================================================================
-
 	static void agendarCita(OrdenCompra orden, Cliente cliente) {
 		System.out.println("\n--- PASO 3: Agendar Cita ---");
 		System.out.println("1. Cita de examen");
@@ -249,12 +230,10 @@ public class VisionMaster {
 		System.out.print("Hora  (ej. 10:30): ");
 		String hora = sc.nextLine();
 
-		// Polimorfismo - patron Mascotas.java -> Animal[] a = { new Animal(), new Perro(), new Gato() }
 		Cita cita;
 		if(opc == 1) {
 			System.out.print("Es gratuita? (s/n): ");
 			boolean gratuita = sc.nextLine().equalsIgnoreCase("s");
-			// new CitaExamen - herencia como Constructores1.java
 			cita = new CitaExamen(fecha, hora, cliente.getNombre(), gratuita);
 		} else {
 			cita = new CitaEntrega(fecha, hora, cliente.getNombre(), orden.getFolio());
@@ -265,10 +244,6 @@ public class VisionMaster {
 		System.out.println("Cita agendada: " + cita);
 	}
 
-	// =====================================================================
-	// PASO 4 - Pago
-	// =====================================================================
-
 	static void pago(OrdenCompra orden) {
 		System.out.println("\n--- PASO 4: Pago ---");
 		System.out.println("Subtotal: $" + orden.getSubtotal());
@@ -277,10 +252,6 @@ public class VisionMaster {
 		}
 		System.out.println("TOTAL: $" + orden.getTotal());
 	}
-
-	// =====================================================================
-	// PASO 5 - Resumen y descarga
-	// =====================================================================
 
 	static void resumenYDescarga(OrdenCompra orden, Cliente cliente) {
 		orden.cerrarCompra();
@@ -303,17 +274,11 @@ public class VisionMaster {
 		System.out.print("Descargar ticket .txt? (s/n): ");
 		if(sc.nextLine().equalsIgnoreCase("s")) {
 			String ruta = "ticket_" + orden.getFolio() + ".txt";
-			// exportarAArchivo - implementacion de Descargable
-			// Patron Contrato.java -> cc.metodo3(); // la implementacion de la interfaz
 			orden.exportarAArchivo(ruta);
 		}
 
 		System.out.println("Compra finalizada. Ventas totales: " + OrdenCompra.getTotalVentas());
 	}
-
-	// =====================================================================
-	// MENU ADMINISTRAR CLIENTES
-	// =====================================================================
 
 	static void menuClientes() {
 		int opc = 0;
@@ -356,7 +321,6 @@ public class VisionMaster {
 		System.out.print("Opcion: ");
 		int ordenOpc = leerEntero();
 
-		// Comparador - patron OrdenarXComparator.java
 		Comparator<Cliente> comparador;
 		if(ordenOpc == 2) {
 			comparador = new ComparadorClienteIdDesc();
@@ -424,11 +388,9 @@ public class VisionMaster {
 			}
 		}
 		System.out.println("Historial de compras:");
-		// lista.isEmpty() - patron Colecciones.java
 		if(c.getHistorial().isEmpty()) {
 			System.out.println("  Sin compras registradas.");
 		} else {
-			// for-each - patron Main.java
 			for(String h : c.getHistorial()) {
 				System.out.println("  - " + h);
 			}
@@ -453,10 +415,6 @@ public class VisionMaster {
 			tienda.eliminarCliente(idx);
 		}
 	}
-
-	// =====================================================================
-	// MENU ALMACEN
-	// =====================================================================
 
 	static void menuAlmacen() {
 		int opc = 0;
@@ -510,7 +468,6 @@ public class VisionMaster {
 		System.out.print("Opcion: ");
 		int ordenOpc = leerEntero();
 
-		// Comparadores - patron OrdenarXComparator.java
 		Comparator<Producto> comparador;
 		if(ordenOpc == 1) {
 			comparador = new ComparadorNombreAZ();
@@ -530,8 +487,6 @@ public class VisionMaster {
 
 		System.out.println("\n-- Inventario --");
 		for(int i = 0; i < lista.size(); i++) {
-			// instanceof - patron Mascotas.java -> if(animal instanceof Perro)
-			// cast - patron Mascotas.java -> Perro p = (Perro)animal;
 			if(lista.get(i) instanceof Armazon) {
 				System.out.println((i + 1) + ". " + ((Armazon) lista.get(i)).toStringCompleto());
 			} else {
@@ -557,7 +512,6 @@ public class VisionMaster {
 		double precio = Double.parseDouble(sc.nextLine());
 
 		if(tipo == 1) {
-			// enum values() - patron DiaFavorito2.java -> for(Dia d: Dia.values())
 			MaterialLente[] materiales = MaterialLente.values();
 			for(int i = 0; i < materiales.length; i++) {
 				System.out.println((i + 1) + ". " + materiales[i].getNombre());
@@ -633,7 +587,6 @@ public class VisionMaster {
 		}
 
 		Producto p = lista.get(idx);
-		// instanceof + cast - patron Mascotas.java
 		if(p instanceof Armazon) {
 			editarArmazon((Armazon) p);
 		} else if(p instanceof Accesorio) {
@@ -723,10 +676,6 @@ public class VisionMaster {
 		}
 	}
 
-	// =====================================================================
-	// CITAS
-	// =====================================================================
-
 	static void mostrarCitas() {
 		System.out.println("\n--- CITAS AGENDADAS ---");
 		List<Cita> citas = tienda.getCitas();
@@ -746,7 +695,6 @@ public class VisionMaster {
 				System.out.println("1.PENDIENTE  2.CONFIRMADA  3.CANCELADA");
 				System.out.print("Nuevo estado: ");
 				int est = leerEntero() - 1;
-				// enum values() - patron DiaFavorito2.java -> Dia.values()
 				EstadoCita[] estados = EstadoCita.values();
 				if(est >= 0 && est < estados.length) {
 					citas.get(idx).setEstado(estados[est]);
@@ -756,8 +704,6 @@ public class VisionMaster {
 		}
 	}
 
-	// Leer entero con try/catch - patron DivisionException.java
-	// -> try { } catch(MateException | ArithmeticException ma) { }
 	static int leerEntero() {
 		try {
 			return Integer.parseInt(sc.nextLine());

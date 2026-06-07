@@ -1,12 +1,19 @@
+// Hay comparadores para Producto por nombre y por precio y para Cliente por id y por nombre
+
+// Dios sabe como esto funciona pero lo hace.
+
+// Las clases y sus métodos son: 
+//   todas tienen solo el método compare:
+//   ComparadorPrecio          - ordena Producto de menor a mayor precio
+//   ComparadorPrecioDesc      - ordena Producto de mayor a menor precio
+//   ComparadorNombreAZ        - ordena Producto de A a Z por nombre
+//   ComparadorNombreZA        - ordena Producto de Z a A por nombre
+//   ComparadorClienteIdAsc    - ordena Cliente de menor a mayor id
+//   ComparadorClienteIdDesc   - ordena Cliente de mayor a menor id
+//   ComparadorClienteNombreAZ - ordena Cliente de A a Z por nombre
+//   ComparadorClienteNombreZA - ordena Cliente de Z a A por nombre
+
 import java.util.Comparator;
-
-// Todos los comparadores del sistema consolidados en un archivo
-// Patron: OrdenarXComparator.java -> class Alumno implements Comparator<Alumno>
-// public int compare(Alumno a1, Alumno a2) { return a1.nombre.compareTo(a2.nombre); }
-
-// --- Comparadores de Producto ---
-// Patron: OrdenarXComparator.java -> return a1.nombre.compareTo(a2.nombre); // ascendente
-//                                    return a2.nombre.compareTo(a1.nombre); // descendente
 
 class ComparadorPrecio implements Comparator<Producto> {
 	public int compare(Producto p1, Producto p2) {
@@ -43,8 +50,6 @@ class ComparadorNombreZA implements Comparator<Producto> {
 		return p2.getNombre().compareTo(p1.getNombre());
 	}
 }
-
-// --- Comparadores de Cliente ---
 
 class ComparadorClienteIdAsc implements Comparator<Cliente> {
 	public int compare(Cliente c1, Cliente c2) {

@@ -1,10 +1,21 @@
-// Jerarquia de productos consolidada en un archivo
-// Herencia: Producto -> Armazon, Accesorio
-// Patron: SobreCarga2.java -> class Animal { } class Pez extends Animal { }
-// Patron: Mascotas.java -> class Animal, class Perro extends Animal, class Gato extends Animal
-// Encapsulamiento: Automovil.java -> private atributos, getters y setters publicos
+// Aquí Producto es el padre, y Armazon y Accesorio son los hijos
 
-// Clase base - encapsulamiento como Automovil.java
+// Para el diagrama de clases, los atributos y métodos son:
+
+// Producto:
+//   Atributos: nombre (String), precio (double)
+//   Métodos: getNombre(), getPrecio(), setNombre(), setPrecio(), toString()
+
+// Armazon extiende de Producto:
+//   Atributos: material (MaterialLente), estilo (String)
+//   Métodos: getMaterial(), getEstilo(), setMaterial(), setEstilo(), toString(), toStringCompleto()
+
+// Accesorio extiende de Producto:
+//   Atributos: tipo (String)
+//   Métodos: getTipo(), setTipo(), toString()
+//
+// No olviden dibujar la flecha de herencia de Armazon -> Producto y de Accesorio -> Producto.
+
 class Producto {
 	private String nombre;
 	private double precio;
@@ -33,8 +44,6 @@ class Producto {
 	}
 }
 
-// Armazon: segunda clase de la jerarquia - como Pez extends Animal en SobreCarga2.java
-// TipoGraduacion es caracteristica del lente elegida en venta, no del armazon en almacen
 class Armazon extends Producto {
 	private MaterialLente material;
 	private String estilo;
@@ -59,18 +68,15 @@ class Armazon extends Producto {
 		this.estilo = estilo;
 	}
 
-	// toString para venta: nombre, material y precio
 	public String toString() {
 		return getNombre() + " | " + material.getNombre() + " | $" + getPrecio();
 	}
 
-	// toString completo para almacen
 	public String toStringCompleto() {
 		return getNombre() + " [" + estilo + "] | " + material.getNombre() + " | $" + getPrecio();
 	}
 }
 
-// Segunda subclase - como Gato/Perro en Mascotas.java
 class Accesorio extends Producto {
 	private String tipo;
 

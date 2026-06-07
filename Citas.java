@@ -1,9 +1,20 @@
-// Jerarquia de citas consolidada en un archivo
-// Herencia: Cita -> CitaExamen, CitaEntrega
-// Patron: Constructores1.java -> class Chango, class Homosapiens extends Chango, class Hombre extends Homosapiens
-// Encapsulamiento: Automovil.java -> private atributos, metodos publicos getter/setter
+// Este archivo maneja la jerarquía de herencias, no se olviden de como se haceen en el diagrama
 
-// Clase base - encapsulamiento como Automovil.java
+// Cita es padre y las hijas son CitaExamen y CitaEntrega
+
+//Atributos:
+//   Cita: fecha (String), hora (String), nombreCliente (String), estado (EstadoCita)
+//Metodos: getFecha(), getHora(), getNombreCliente(), getEstado(), setEstado(), toString()
+
+//   CitaExamen extiende de Cita:
+//   Atributos: gratuita (boolean)
+//   Metodos: isGratuita()
+
+//   CitaEntrega extiende de Cita:
+//   Atributos: folio (int)
+//   Metodos: getFolio()
+
+
 class Cita {
 	private String fecha;
 	private String hora;
@@ -39,8 +50,6 @@ class Cita {
 	}
 }
 
-// Subclase examen - herencia como Constructores1.java
-// super() llama al constructor del padre - Constructores2.java -> super("b")
 class CitaExamen extends Cita {
 	private boolean gratuita;
 
@@ -64,7 +73,6 @@ class CitaExamen extends Cita {
 	}
 }
 
-// Subclase entrega - segunda subclase de la jerarquia Cita
 class CitaEntrega extends Cita {
 	private int folio;
 

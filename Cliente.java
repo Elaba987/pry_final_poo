@@ -1,14 +1,21 @@
+//Toda relacion con el cliente
+
+// El ArrayList para guarda el historial de compras del cliente
+
+// contadorId es estático (se subraya en el diagrama o solo especifiquen que lo es)
+
+// Los atributos de Cliente son:
+//   contadorId (static int), id (int), nombre (String), telefono (String), correo (String), historial (List<String>), tieneCupon (boolean)
+
+// Los metodos:
+//   getId(), getNombre(), getTelefono(), getCorreo(), getHistorial(), tieneCupon(), setNombre(), setTelefono(), setCorreo(), setTieneCupon(), agregarHistorial(), getContadorId() (static), toString()
+
 import java.util.ArrayList;
 import java.util.List;
 
-// Clase Cliente - ID autoincremental con static como en MiConteo.java (clase Refresco)
-// MiConteo.java -> public static int conteo = 0; conteo++; en constructor
-// Colecciones.java -> List<Object> lista = new ArrayList<>();
 public class Cliente {
-	// Variable estatica compartida - patron MiConteo.java -> public static int conteo = 0;
 	private static int contadorId = 0;
 
-	// Variables de instancia - patron Refresco en MiConteo.java -> private int cuenta = 0;
 	private int id;
 	private String nombre;
 	private String telefono;
@@ -17,18 +24,15 @@ public class Cliente {
 	private boolean tieneCupon;
 
 	public Cliente(String nombre, String telefono, String correo) {
-		// Incrementa el estatico - patron Refresco -> conteo++;
 		contadorId++;
 		this.id = contadorId;
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.correo = correo;
-		// ArrayList como en Colecciones.java -> List<Object> lista = new ArrayList<>();
 		this.historial = new ArrayList<>();
 		this.tieneCupon = false;
 	}
 
-	// Getters - patron Automovil.java -> public String getMarca() { return marca; }
 	public int getId() {
 		return id;
 	}
@@ -48,7 +52,6 @@ public class Cliente {
 		return tieneCupon;
 	}
 
-	// Setters - patron Automovil.java -> public void setMarca(String marca) { this.marca = marca; }
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -62,17 +65,14 @@ public class Cliente {
 		this.tieneCupon = tieneCupon;
 	}
 
-	// Agrega al historial - lista.add() como en Colecciones.java
 	public void agregarHistorial(String entrada) {
 		historial.add(entrada);
 	}
 
-	// Metodo estatico - patron MiConteo.java -> public static int getConteo() { return conteo; }
 	public static int getContadorId() {
 		return contadorId;
 	}
 
-	// toString - patron OrdenarXComparable.java -> public String toString() { return this.edad + ""; }
 	public String toString() {
 		String cupon;
 		if(tieneCupon) {

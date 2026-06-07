@@ -1,18 +1,34 @@
+// Esta clase representa una venta completa: tiene cliente y productos
+// se aplican descuentos con cupón y puede guardar el ticket en un archivo .txt
+
+// Usamos BufferStream porque escribe archivos con PrintWrite.
+// El folio se genera solo con una variable estática
+
+// Para el Diagrama no olviden que OrdenCompra implementa dos interfaces: Descargable y Promocionable
+
+//Necesito saber si leen esto .-. capaz y no
+
+// Los atributos son:
+//   totalVentas (static int), folio (int), cliente (Cliente), carrito (List<Producto>), 
+// subtotal (double), descuento (double), total (double), cuponAplicado (boolean), 
+// ganoNuevoCupon (boolean), cita (Cita)
+
+
+
+// Los métodos son:
+//   agregarProducto(), calcularDescuento(), cerrarCompra(), calificaParaCupon() (static),
+//   exportarAArchivo(),getFolio(), getCliente(), getCarrito(), getSubtotal(), getDescuento(),
+//   getTotal(), isCuponAplicado(), isGanoNuevoCupon(), getCita(), setCita(),
+//   getTotalVentas() (static), toString()
+
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
 
-// OrdenCompra implementa Descargable y Promocionable
-// Patron: Contrato.java -> class CConcreta extends CAbstracta implements Interface
-// Folio autoincremental con static - como conteo en MiConteo.java
-// IO con PrintWriter - como BufferStream.java -> PrintWriter pw = new PrintWriter(new FileWriter(args[1]))
-// try/catch/finally - como DivisionException.java
 public class OrdenCompra implements Descargable, Promocionable {
 
-	// Variable estatica - patron MiConteo.java -> public static int conteo = 0;
 	private static int totalVentas = 0;
 
-	// Variables de instancia - patron Automovil.java -> private String marca;
 	private int folio;
 	private Cliente cliente;
 	private List<Producto> carrito;
@@ -24,11 +40,9 @@ public class OrdenCompra implements Descargable, Promocionable {
 	private Cita cita;
 
 	public OrdenCompra(Cliente cliente) {
-		// Incrementa el estatico - patron Refresco en MiConteo.java -> conteo++;
 		totalVentas++;
 		this.folio = totalVentas;
 		this.cliente = cliente;
-		// ArrayList - patron Colecciones.java -> List<Object> lista = new ArrayList<>();
 		this.carrito = new ArrayList<>();
 		this.subtotal = 0;
 		this.descuento = 0;
@@ -37,13 +51,11 @@ public class OrdenCompra implements Descargable, Promocionable {
 		this.ganoNuevoCupon = false;
 	}
 
-	// Agrega producto al carrito - lista.add() como Colecciones.java
 	public void agregarProducto(Producto p) {
 		carrito.add(p);
 		recalcular();
 	}
 
-	// Recalcula totales con for-each - patron Main.java -> for (Animal a : lista)
 	private void recalcular() {
 		subtotal = 0;
 		for(Producto p : carrito) {
@@ -53,8 +65,6 @@ public class OrdenCompra implements Descargable, Promocionable {
 		total = subtotal - descuento;
 	}
 
-	// Implementacion de Promocionable
-	// @Override - patron SobreEscritura1.java -> @Override public void metodo1()
 	@Override
 	public double calcularDescuento(double monto) {
 		if(cliente.tieneCupon()) {
@@ -65,7 +75,6 @@ public class OrdenCompra implements Descargable, Promocionable {
 		return 0;
 	}
 
-	// Cierra la compra y asigna cupon si aplica
 	public void cerrarCompra() {
 		if(subtotal >= 4000) {
 			ganoNuevoCupon = true;
@@ -79,22 +88,15 @@ public class OrdenCompra implements Descargable, Promocionable {
 		if(subtotal >= 4000) {
 			cliente.setTieneCupon(true);
 		}
-		// agregarHistorial - lista.add() como en Colecciones.java
 		cliente.agregarHistorial("Orden #" + folio + " | $" + total
 			+ (cuponAplicado ? " | Cupon usado" : "")
 			+ (ganoNuevoCupon ? " | Cupon ganado" : ""));
 	}
 
-	// Metodo estatico - patron MiConteo.java -> public static int getConteo()
-	// Regla de negocio global - como indica el proyecto
 	public static boolean calificaParaCupon(double monto) {
 		return monto >= 4000;
 	}
 
-	// Implementacion de Descargable
-	// @Override - patron SobreEscritura1.java
-	// I/O con PrintWriter - patron BufferStream.java -> PrintWriter salida = new PrintWriter(new FileWriter(args[1]))
-	// try/catch - patron DivisionException.java -> try { } catch(MateException | ArithmeticException ma) { }
 	@Override
 	public void exportarAArchivo(String ruta) {
 		PrintWriter pw = null;
@@ -112,7 +114,6 @@ public class OrdenCompra implements Descargable, Promocionable {
 			pw.println("----------------------------------------");
 			pw.println("PRODUCTOS:");
 			int num = 1;
-			// for-each - patron Main.java -> for (Animal a : lista)
 			for(Producto p : carrito) {
 				pw.println("  " + num + ". " + p.toString());
 				num++;
@@ -137,17 +138,14 @@ public class OrdenCompra implements Descargable, Promocionable {
 			pw.println("========================================");
 			System.out.println("Ticket guardado en: " + ruta);
 		} catch(IOException ioe) {
-			// catch patron DivisionException.java y BufferStream.java
 			System.out.println("Error al guardar: " + ioe.getMessage());
 		} finally {
-			// finally - patron RTException.java -> finally { System.out.println("Finally"); }
 			if(pw != null) {
 				pw.close();
 			}
 		}
 	}
 
-	// Getters - patron Automovil.java
 	public int getFolio() {
 		return folio;
 	}
@@ -179,7 +177,6 @@ public class OrdenCompra implements Descargable, Promocionable {
 		this.cita = cita;
 	}
 
-	// Metodo estatico - patron MiConteo.java -> public static int getConteo()
 	public static int getTotalVentas() {
 		return totalVentas;
 	}

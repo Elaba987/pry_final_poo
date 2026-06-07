@@ -1,5 +1,13 @@
-// Enums del sistema - mismo patron que DiaFavorito2.java
-// enum con constructor privado y getNombre() -> identico a enum Dia en DiaFavorito2.java
+// Esta clase define los catálogos que usa todo el sistema: tipos de graduación, materiales de lente y estados de cita 
+// también se hace un enum con nombre
+
+// Para el diagrama: los tres enums van como clasificadores separados
+//      TipoGraduacion tiene los valores MIOPIA, ASTIGMATISMO, PRESBICIA, NEUTRO
+//       y el atributo: nombre (String). Método: getNombre()
+//       MaterialLente tiene POLICARBONATO, RESINA, CRISTAL
+//        y el atributo: nombre (String), precio (double). Métodos: getNombre(), getPrecio()
+//        EstadoCita tiene PENDIENTE, CONFIRMADA, CANCELADA
+//        y el atributo: nombre (String). Método: getNombre()
 
 enum TipoGraduacion {
 	MIOPIA("Miopia"),
