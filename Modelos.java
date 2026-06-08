@@ -1,20 +1,20 @@
-// Aquí Producto es el padre, y Armazon y Accesorio son los hijos
+// Aqui Producto es el padre, y Armazon y Accesorio son los hijos
 
-// Para el diagrama de clases, los atributos y métodos son:
+// Para el diagrama de clases, los atributos y metodos son:
 
 // Producto:
 //   Atributos: nombre (String), precio (double)
-//   Métodos: getNombre(), getPrecio(), setNombre(), setPrecio(), toString()
+//   Metodos: getNombre(), getPrecio(), setNombre(), setPrecio(), toString()
 
 // Armazon extiende de Producto:
 //   Atributos: material (MaterialLente), estilo (String)
-//   Métodos: getMaterial(), getEstilo(), setMaterial(), setEstilo(), toString(), toStringCompleto()
+//   Metodos: getMaterial(), getEstilo(), setMaterial(), setEstilo(), toString(), toStringCompleto()
 
 // Accesorio extiende de Producto:
 //   Atributos: tipo (String)
-//   Métodos: getTipo(), setTipo(), toString()
+//   Metodos: getTipo(), setTipo(), toString()
 //
-// No olviden dibujar la flecha de herencia de Armazon -> Producto y de Accesorio -> Producto.
+// No olviden dibujar la flecha de herencia de Armazon -> Producto y de Accesorio -> Producto
 
 class Producto {
 	private String nombre;

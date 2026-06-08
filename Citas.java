@@ -1,4 +1,4 @@
-// Este archivo maneja la jerarquía de herencias, no se olviden de como se haceen en el diagrama
+// Este archivo maneja la jerarquia de herencias, no se olviden de como se hacen en el diagrama
 
 // Cita es padre y las hijas son CitaExamen y CitaEntrega
 

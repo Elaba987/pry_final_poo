@@ -1,13 +1,13 @@
-// Esta clase define los catálogos que usa todo el sistema: tipos de graduación, materiales de lente y estados de cita 
-// también se hace un enum con nombre
+// Esta clase define los catalogos que usa todo el sistema: tipos de graduacion, materiales de lente y estados de cita 
+// tambien se hace un enum con nombre
 
 // Para el diagrama: los tres enums van como clasificadores separados
 //      TipoGraduacion tiene los valores MIOPIA, ASTIGMATISMO, PRESBICIA, NEUTRO
-//       y el atributo: nombre (String). Método: getNombre()
+//       y el atributo: nombre (String). Metodo: getNombre()
 //       MaterialLente tiene POLICARBONATO, RESINA, CRISTAL
-//        y el atributo: nombre (String), precio (double). Métodos: getNombre(), getPrecio()
+//        y el atributo: nombre (String), precio (double). Metodos: getNombre(), getPrecio()
 //        EstadoCita tiene PENDIENTE, CONFIRMADA, CANCELADA
-//        y el atributo: nombre (String). Método: getNombre()
+//        y el atributo: nombre (String). Metodo: getNombre()
 
 enum TipoGraduacion {
 	MIOPIA("Miopia"),

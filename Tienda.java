@@ -6,15 +6,15 @@
 //   nombre (static String), inventario (List<Producto>),
 //   citas (List<Cita>), clientes (List<Cliente>)
 //
-// Los métodos que tiene son:
+// Los metodos que tiene son:
 //   getNombre() (static), validarCupon() (static),
 //   registrarCliente(), eliminarCliente(), getClientes(),
 //   agendarCita(), getCitas(), getCitasDeCliente(),
 //   agregarProducto(), eliminarProducto(), getInventario(),
 //   getListaOrdenada(), getClientesOrdenados()
 
-// Recuerden que Tienda usa (tiene referencia a) Cliente, Cita, Producto,Armazon y Accesorio
-// En el diagrama eso se dibuja con líneas de asociación/agregación.
+// Recuerden que Tienda usa (tiene referencia a) Cliente, Cita, Producto, Armazon y Accesorio
+// En el diagrama eso se dibuja con lineas de asociacion/agregacion
 
 import java.util.ArrayList;
 import java.util.Collections;

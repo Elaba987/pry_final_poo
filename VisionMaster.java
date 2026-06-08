@@ -1,8 +1,8 @@
-// finalmente (GRACIAS A DIOS) el motor de todo. 
+// finalmente (GRACIAS A DIOS) el motor de todo
 
-// Para el diagrama: VisionMaster no tiene atributos de instancia como tal, solo dos estáticos que son sc (Scanner) y tienda (Tienda)
+// Para el diagrama: VisionMaster no tiene atributos de instancia como tal, solo dos estaticos que son sc (Scanner) y tienda (Tienda)
 
-// Los métodos principales son:
+// Los metodos principales son:
 //   main(), nuevaCompra(), seleccionarOCrearCliente(), elegirClienteDeLista(),
 //   crearCliente(), configurarProducto(), elegirArmazon(), elegirAccesorio(),
 //   agendarCita(), pago(), resumenYDescarga(),
@@ -13,7 +13,7 @@
 
 // En el diagrama de clases basta con poner VisionMaster con una dependencia/uso hacia Tienda, OrdenCompra, Cliente, Cita, Producto, Armazon y Accesorio
 
-//Basiacmente este es el cerebro del proyecto, cualquier duda con Iker por favor
+//Basicamente este es el cerebro del proyecto, cualquier duda con Iker por favor
 
 import java.util.ArrayList;
 import java.util.Comparator;

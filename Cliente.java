@@ -1,8 +1,8 @@
 //Toda relacion con el cliente
 
-// El ArrayList para guarda el historial de compras del cliente
+// El ArrayList para guardar el historial de compras del cliente
 
-// contadorId es estático (se subraya en el diagrama o solo especifiquen que lo es)
+// contadorId es estatico (se subraya en el diagrama o solo especifiquen que lo es)
 
 // Los atributos de Cliente son:
 //   contadorId (static int), id (int), nombre (String), telefono (String), correo (String), historial (List<String>), tieneCupon (boolean)

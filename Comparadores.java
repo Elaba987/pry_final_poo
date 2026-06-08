@@ -1,9 +1,9 @@
 // Hay comparadores para Producto por nombre y por precio y para Cliente por id y por nombre
 
-// Dios sabe como esto funciona pero lo hace.
+// Dios sabe como esto funciona pero lo hace
 
-// Las clases y sus métodos son: 
-//   todas tienen solo el método compare:
+// Las clases y sus metodos son: 
+//   todas tienen solo el metodo compare:
 //   ComparadorPrecio          - ordena Producto de menor a mayor precio
 //   ComparadorPrecioDesc      - ordena Producto de mayor a menor precio
 //   ComparadorNombreAZ        - ordena Producto de A a Z por nombre

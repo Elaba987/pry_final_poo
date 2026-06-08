@@ -1,8 +1,8 @@
 // Esta clase representa una venta completa: tiene cliente y productos
-// se aplican descuentos con cupón y puede guardar el ticket en un archivo .txt
+// se aplican descuentos con cupon y puede guardar el ticket en un archivo .txt
 
-// Usamos BufferStream porque escribe archivos con PrintWrite.
-// El folio se genera solo con una variable estática
+// Usamos BufferStream porque escribe archivos con PrintWriter
+// El folio se genera solo con una variable estatica
 
 // Para el Diagrama no olviden que OrdenCompra implementa dos interfaces: Descargable y Promocionable
 
@@ -15,7 +15,7 @@
 
 
 
-// Los métodos son:
+// Los metodos son:
 //   agregarProducto(), calcularDescuento(), cerrarCompra(), calificaParaCupon() (static),
 //   exportarAArchivo(),getFolio(), getCliente(), getCarrito(), getSubtotal(), getDescuento(),
 //   getTotal(), isCuponAplicado(), isGanoNuevoCupon(), getCita(), setCita(),
